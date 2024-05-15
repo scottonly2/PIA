@@ -7,7 +7,7 @@ import torch
 from omegaconf import OmegaConf
 
 from animatediff.pipelines import I2VPipeline
-from animatediff.utils.util import preprocess_img, save_videos_grid
+from animatediff.utils.util import preprocess_img, save_videos_grid, save_videos_mp4
 
 
 def seed_everything(seed):
@@ -126,6 +126,6 @@ if __name__ == "__main__":
                     mask_sim_template_idx=config.validation_data.mask_sim_range,
                     **config.validation_data,
                 ).videos
-                save_videos_grid(sample, target_dir + f"{global_inf_num}_sim_{sim_range}.gif")
+                save_videos_mp4(sample, target_dir + f"{global_inf_num}_sim_{sim_range}.mp4")
                 print(f" <<< test {global_inf_num} Done <<<")
     print(" <<< Test Done <<<")
