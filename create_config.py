@@ -46,17 +46,26 @@ def list_config_yaml(directory):
 @app.route("/")
 def root():
     return render_template("root.html", configs = list_config_yaml(config_root))
+
+@app.route("/check?p=<key>")
+def check_sub(key):
+    print(f"Checking {key}")
+    return "OK"
+
 @app.route("/run", methods=['POST'])
 def run_config():
     config_2_run = request.form['config']
+    act = request.form['act']
     print("To run", config_2_run)
-    key = f"{time.time()}"
+    key = f"{config_2_run}"
     try:
-        cmd = ["python3" , "inference.py", "--config", config_2_run]
+        cmd = ["python3" , f"{act}.py", "--config", config_2_run]
         print(cmd)
         output = subprocess.Popen(cmd)
+        processed[key]= output
+        return f"Check <a href='/check?p={key}'>Check</a>"
     except subprocess.SubprocessError as e:
         return f"ERROR: {e}\r\n {e.output}"
     return f"OK :{output}"
 if __name__=="__main__":
-    app.run(debug=True, port=8199)
+    app.run(debug=True, port=8199, host="0.0.0.0")
