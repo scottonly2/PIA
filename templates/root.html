@@ -1,0 +1,14 @@
+{% include 'header.html' %}
+
+Run
+<form action="/run" method="post">
+<select name="config">
+    {% for cfg in configs %}
+    <option value="{{cfg}}">{{cfg}}</option>
+    {% endfor %}
+</select>
+    <input type="submit" value="Run" />
+</form>
+
+
+{% include 'foot.html' %}
