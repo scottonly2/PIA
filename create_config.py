@@ -52,9 +52,9 @@ def run_config():
     print("To run", config_2_run)
     key = f"{time.time()}"
     try:
-        cmd = ["python3" , "inference.py", config_2_run]
+        cmd = ["python3" , "inference.py", "--config", config_2_run]
         print(cmd)
-        output = subprocess.check_output(cmd)
+        output = subprocess.Popen(cmd)
     except subprocess.SubprocessError as e:
         return f"ERROR: {e}\r\n {e.output}"
     return f"OK :{output}"
