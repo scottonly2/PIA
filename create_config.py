@@ -119,14 +119,15 @@ def create_form():
         "n_prompt":[],
         "mask_sim_range":[0]
     }
-    return render_template("create_form.html", imgs = list_imgs(img_root), cfgyaml=data)
+    return render_template("create_form.html", imgs = list_imgs(img_root), as_name='', cfgyaml=data)
 
 @app.route("/load")
 def load():
     cfg = request.args['cfg']
     with open(cfg, 'r') as file:
         data = yaml.safe_load(file)
-    return render_template("create_form.html", imgs=list_imgs(img_root), cfgyaml=data)
+    as_name=cfg[len(config_root):cfg.index('.yaml')]
+    return render_template("create_form.html", imgs=list_imgs(img_root), as_name=as_name, cfgyaml=data)
 
 
 @app.route("/create",  methods=['POST'])

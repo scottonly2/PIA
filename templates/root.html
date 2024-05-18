@@ -1,10 +1,11 @@
 {% include 'header.html' %}
 <a href="/create">Create</a>
 <br/>
-    {% for cfg in configs %}
+ Or Edit:
+{% for cfg in configs %}
     <a href="/load?cfg={{cfg}}">{{cfg}}</a>&nbsp;
     {% endfor %}
-
+<br/>
 Run
 <form action="/run" method="post" target="run_frame">
 <select name="config">
