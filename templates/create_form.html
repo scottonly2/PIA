@@ -1,6 +1,6 @@
 {% include 'header.html' %}
 
-<a href="/">Run</a>
+<a href="/">Home</a>
 <form action="/create" method="post" target="run_frame">
   <table>
 <tr><td>As name:</td><td><input name="as_name" value="{{as_name}}" /></td></tr>
@@ -15,18 +15,15 @@
     {% endfor %}
 </select></td></tr>
  <tr><td>Prompts:</td><td>
-     <textarea name="prompts" cols="90" rows="10" placeholder="prompts by lines">
-     {{cfgyaml.get("prompts")}}
-     </textarea>
+     <textarea name="prompts" cols="90" rows="10"
+               placeholder="prompts by lines">{{ pmpts }}</textarea>
 </td></tr>
  <tr><td>N Prompts:</td><td>
      <textarea name="n_prompt" cols="90" rows="10"
-              placeholder="negative prompt by lines">
-    {{cfgyaml.get("n_prompt")}}
-    </textarea></td></tr>
+   placeholder="negative prompt by lines">{{"\r\n".join(cfgyaml.get("n_prompt"))}}</textarea></td></tr>
 <tr><td>Mask SIM RANGE</td>
     <td><input name="mask_sim_range" placeholder="numbers by spaces"
-    value="{{cfgyaml.get('mask_sim_range')}}" />
+    value="{{ sim }}" />
 </td></tr>
   </table>
 

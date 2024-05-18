@@ -113,21 +113,36 @@ def root():
 def create_form():
     data ={
         "validation_data": {
-            "input_name": ''
+            "input_name": '',
+            "mask_sim_range": [0]
         },
         "prompts":[[]],
         "n_prompt":[],
         "mask_sim_range":[0]
     }
-    return render_template("create_form.html", imgs = list_imgs(img_root), as_name='', cfgyaml=data)
+    sim = data['validation_data']['mask_sim_range']
+    return render_template("create_form.html",
+                           imgs = list_imgs(img_root),
+                           as_name='',
+                           pmpts="",
+                           cfgyaml=data,
+                           sim =' '.join([str(p) for p in sim])
+                           )
 
 @app.route("/load")
 def load():
     cfg = request.args['cfg']
     with open(cfg, 'r') as file:
         data = yaml.safe_load(file)
+        pmpts = '\r\n'.join( ['\r\n'.join([ l.strip() for l in inner_list]) for inner_list in data.get("prompts") ] ).strip()
+        sim = data['validation_data']['mask_sim_range']
     as_name=cfg[len(config_root):cfg.index('.yaml')]
-    return render_template("create_form.html", imgs=list_imgs(img_root), as_name=as_name, cfgyaml=data)
+
+    return render_template("create_form.html", imgs=list_imgs(img_root),
+                           as_name=as_name,
+                           cfgyaml=data,
+                           pmpts =pmpts,
+                           sim=' '.join([str(p) for p in sim]))
 
 
 @app.route("/create",  methods=['POST'])
