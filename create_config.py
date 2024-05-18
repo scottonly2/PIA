@@ -129,7 +129,7 @@ def do_upload():
     file = request.files['file']
     data = file.read()
     name = file.filename
-    with open(os.path(img_root, name), 'wb') as file:
+    with open(os.path.join(img_root, name), 'wb') as file:
         file.write(data)
     return "<a href='/mf'>MF</a>"
 
