@@ -2,7 +2,7 @@ import random
 
 import requests
 import yaml
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import sys
 import os
 import subprocess
@@ -122,6 +122,16 @@ def mf():
     host = request.host
     return render_template("mf.html",
         host = host[:host.index(':')])
+
+
+@app.route("/upload", methods=['POST'])
+def do_upload():
+    file = request.files['file']
+    data = file.read()
+    name = file.filename
+    with open(os.path(img_root, name), 'wb') as file:
+        file.write(data)
+    return "<a href='/mf'>MF</a>"
 
 
 @app.route("/create", methods=['GET'])
