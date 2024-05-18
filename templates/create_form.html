@@ -1,0 +1,21 @@
+{% include 'header.html' %}
+
+Run
+<form action="/run" method="post" target="run_frame">
+<select name="config">
+    {% for cfg in configs %}
+    <option value="{{cfg}}">{{cfg}}</option>
+    {% endfor %}
+</select>
+    <select name="act">
+       <option value="inference">inference</option>
+       <option value="test_run">test_run</option>
+   </select>
+    <input type="submit" value="Run" />
+</form>
+
+<iframe name="run_frame" width="90%" height="300">
+
+</iframe>
+
+{% include 'foot.html' %}
