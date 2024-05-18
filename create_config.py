@@ -111,8 +111,9 @@ def root():
 
 @app.route("/mf")
 def mf():
+    host = request.host
     return render_template("mf.html",
-        host = request.host)
+        host = host[:host.index(':')])
 
 
 @app.route("/create", methods=['GET'])
