@@ -109,6 +109,12 @@ class Config:
 def root():
     return render_template("root.html", configs = list_config_yaml(config_root))
 
+@app.route("/mf")
+def mf():
+    return render_template("mf.html",
+        host = request.host)
+
+
 @app.route("/create", methods=['GET'])
 def create_form():
     data ={
