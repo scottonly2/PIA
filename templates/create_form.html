@@ -7,7 +7,9 @@
  <tr><td>Image:</td><td><select name="img">
     {% for cfg in imgs %}
     {% if cfg==cfgyaml.get('validation_data').get('input_name') %}
-    {% else %}
+    <option value="{{cfg}}" selected="selected">{{cfg}}</option>
+
+     {% else %}
      <option value="{{cfg}}">{{cfg}}</option>
      {% endif %}
     {% endfor %}
