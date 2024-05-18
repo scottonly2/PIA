@@ -111,7 +111,23 @@ def root():
 
 @app.route("/create", methods=['GET'])
 def create_form():
-    return render_template("create_form.html", imgs = list_imgs(img_root))
+    data ={
+        "validation_data": {
+            "input_name": ''
+        },
+        "prompts":[[]],
+        "n_prompt":[],
+        "mask_sim_range":[0]
+    }
+    return render_template("create_form.html", imgs = list_imgs(img_root), cfgyaml=data)
+
+@app.route("/load")
+def load():
+    cfg = request.args['cfg']
+    with open(cfg, 'r') as file:
+        data = yaml.safe_load(file)
+    return render_template("create_form.html", imgs=list_imgs(img_root), cfgyaml=data)
+
 
 @app.route("/create",  methods=['POST'])
 def do_create():
