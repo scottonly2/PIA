@@ -109,6 +109,14 @@ class Config:
 def root():
     return render_template("root.html", configs = list_config_yaml(config_root))
 
+@app.route("/list")
+def list_running():
+    return render_template("list.html",
+        processed= processed.keys()
+       )
+
+
+
 @app.route("/mf")
 def mf():
     host = request.host

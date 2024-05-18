@@ -1,0 +1,13 @@
+{% include 'header.html' %}
+<a href="/mf" target="_top">MF</a>
+<br/>
+{% for key in processed %}
+<a href="/check?p={{key}}">Check {{key}}</a><br/>
+{% endfor %}
+
+
+<iframe name="run_frame" width="90%" height="300">
+
+</iframe>
+
+{% include 'foot.html' %}
