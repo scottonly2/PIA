@@ -2,9 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  {% if not done %}
+  <meta http-equiv="refresh" content="1; URL=/check?p={{key_to_check}}">
+  {% endif %}
+  <title>Result</title>
+
 </head>
 <body>
-$END$
+<code>
+{% for line in lines %}
+{{line}}<br/>
+{% endfor %}
+</code>
+{% if  done %}
+Done!
+{% endif %}
 </body>
 </html>

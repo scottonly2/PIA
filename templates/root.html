@@ -1,7 +1,7 @@
 {% include 'header.html' %}
-
+<a href="/create">Create</a>
 Run
-<form action="/run" method="post">
+<form action="/run" method="post" target="run_frame">
 <select name="config">
     {% for cfg in configs %}
     <option value="{{cfg}}">{{cfg}}</option>
@@ -14,5 +14,8 @@ Run
     <input type="submit" value="Run" />
 </form>
 
+<iframe name="run_frame" width="90%" height="300">
+
+</iframe>
 
 {% include 'foot.html' %}

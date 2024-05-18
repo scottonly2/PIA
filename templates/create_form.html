@@ -1,17 +1,27 @@
 {% include 'header.html' %}
 
-Run
-<form action="/run" method="post" target="run_frame">
-<select name="config">
-    {% for cfg in configs %}
+<a href="/">Run</a>
+<form action="/create" method="post" target="run_frame">
+  <table>
+<tr><td>As name:</td><td><input name="as_name" /></td></tr>
+ <tr><td>Image:</td><td><select name="img">
+    {% for cfg in imgs %}
     <option value="{{cfg}}">{{cfg}}</option>
     {% endfor %}
-</select>
-    <select name="act">
-       <option value="inference">inference</option>
-       <option value="test_run">test_run</option>
-   </select>
-    <input type="submit" value="Run" />
+</select></td></tr>
+ <tr><td>Prompts:</td><td> <textarea name="prompts" cols="90" rows="10"
+                                     placeholder="prompts by lines"></textarea>
+</td></tr>
+ <tr><td>N Prompts:</td><td><textarea name="n_prompt" cols="90" rows="10"
+              placeholder="negative prompt by lines">
+    </textarea></td></tr>
+<tr><td>Mask SIM RANGE</td><td><input name="mask_sim_range" placeholder="numbers by spaces" />
+</td></tr>
+  </table>
+
+
+
+    <input type="submit" value="Create" />
 </form>
 
 <iframe name="run_frame" width="90%" height="300">
