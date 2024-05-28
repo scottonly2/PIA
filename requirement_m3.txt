@@ -1,0 +1,16 @@
+diffusers
+##==0.26.3
+transformers==4.38.1
+xformers==0.0.16
+imageio==2.27.0
+##- decord==0.6.0
+eva-decord
+gdown
+accelerate==0.27.2
+stable_diffusion_videos
+einops
+omegaconf
+safetensors
+imageio-ffmpeg==0.4.9
+gradio
+wandb

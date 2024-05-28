@@ -279,10 +279,12 @@ class I2VPipeline(DiffusionPipeline, IPAdapterMixin, TextualInversionLoaderMixin
             print(" <<< Loaded LoRA        <<<")
 
         # move model to device
-        device = torch.device("cuda")
-        unet_dtype = torch.float16
-        tenc_dtype = torch.float16
-        vae_dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float32
+        #device = torch.device("cuda")
+        device = torch.device("mps")
+
+        unet_dtype = torch.float32
+        tenc_dtype = torch.float32
+        vae_dtype = torch.bfloat32 ## if torch.cuda.is_bf16_supported() else torch.float32
 
         unet = unet.to(device=device, dtype=unet_dtype)
         text_encoder = text_encoder.to(device=device, dtype=tenc_dtype)
